@@ -1,0 +1,54 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# FRIDAY AI Agent — Python Dependencies  (100% FREE STACK)
+# Install all: pip install -r requirements.txt
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Core automation ───────────────────────────────────────────────────────────
+pyautogui>=0.9.54          # Mouse & keyboard control
+pygetwindow>=0.0.9         # Window management
+Pillow>=10.0.0             # Image I/O and processing
+
+# ── AI Brain — Google Gemini (FREE tier via AI Studio) ───────────────────────
+google-genai>=0.1.0        # Gemini 2.0 Flash — new SDK, 15 RPM / 1M TPD free
+
+# ── Screen capture & computer vision ─────────────────────────────────────────
+mss>=9.0.1                 # Ultra-fast multi-monitor screen capture
+opencv-python>=4.9.0       # Image processing, template matching, OCR preprocess
+
+# ── Web search — no API key needed ───────────────────────────────────────────
+duckduckgo-search>=5.3.0   # Free web search
+
+# ── HTTP client (Pollinations.ai + Ollama) ────────────────────────────────────
+httpx>=0.27.0              # Async-capable HTTP — used for image gen + Ollama
+
+# ── Terminal UI ───────────────────────────────────────────────────────────────
+rich>=13.7.0               # Beautiful terminal output
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+pyperclip>=1.8.2           # Clipboard read/write
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OPTIONAL — uncomment as needed
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── OCR (requires Tesseract installed on PATH) ────────────────────────────────
+# pytesseract>=0.3.10      # pip install pytesseract
+#                          # Tesseract: https://github.com/UB-Mannheim/tesseract/wiki
+
+# ── Local image gen — Stable Diffusion (GPU recommended) ─────────────────────
+# diffusers>=0.27.0
+# transformers>=4.40.0
+# accelerate>=0.29.0
+# torch>=2.2.0             # Use CUDA build for GPU: https://pytorch.org/get-started
+
+# ── Hugging Face Inference API (free tier) ────────────────────────────────────
+# (httpx is already included — just add HF_API_TOKEN to .env)
+
+# ── Local LLM via Ollama ──────────────────────────────────────────────────────
+# (httpx is already included — install Ollama from https://ollama.com)
+
+# ── Windows toast notifications ───────────────────────────────────────────────
+# win10toast>=0.9
+
+# ── Environment loader (built-in loader already in friday.py) ─────────────────
+# python-dotenv>=1.0.0
