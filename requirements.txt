@@ -24,6 +24,10 @@ httpx>=0.27.0              # Async-capable HTTP — used for image gen + Ollama
 # ── Terminal UI ───────────────────────────────────────────────────────────────
 rich>=13.7.0               # Beautiful terminal output
 
+# ── Web UI ────────────────────────────────────────────────────────────────────
+Flask>=3.0.0               # Web framework
+Flask-SocketIO>=5.3.6      # WebSockets for real-time communication
+
 # ── Utilities ─────────────────────────────────────────────────────────────────
 pyperclip>=1.8.2           # Clipboard read/write
 

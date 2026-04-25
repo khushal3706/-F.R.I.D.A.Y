@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRIDAY - AI Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="pulse-ring"></div>
+                <h1 class="glow-text">FRIDAY</h1>
+            </div>
+            <p class="subtitle">Intelligent Assistant System</p>
+        </header>
+
+        <div class="chat-container" id="chat-container">
+            <div class="message system-msg">
+                <p>Welcome, Boss. Systems are online. I am ready.</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="status-indicator" id="status-text">Status: Offline</div>
+            <div class="input-row">
+                <button id="mic-btn" class="mic-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                </button>
+                <div class="input-wrapper">
+                    <input type="text" id="text-input" placeholder="Type a message or click microphone...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
