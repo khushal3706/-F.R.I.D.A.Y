@@ -2,7 +2,7 @@
 
 > **F**ast **R**easoning **I**ntelligent **D**esktop **A**utomation **Y**ield
 
-A fully modular, Windows-native AI agent that can control your computer, browse the web, generate images, run shell commands, and reason over tasks — all from a single terminal.
+A fully modular, Windows-native AI agent that can control your computer, browse the web, generate images, run shell commands, and reason over tasks — accessible from a terminal or a sleek real-time voice-enabled Web UI.
 
 ---
 
@@ -11,10 +11,11 @@ A fully modular, Windows-native AI agent that can control your computer, browse 
 | Capability | Module | Description |
 |---|---|---|
 | 🖱️ **System Control** | `modules/system_control.py` | Click, type, drag, scroll, open apps, manage windows |
-| 📸 **Screen Awareness** | `modules/screen_context.py` | Screenshots, OCR, GPT-4o Vision analysis |
+| 📸 **Screen Awareness** | `modules/screen_context.py` | Screenshots, MSS, OpenCV, Gemini Vision analysis |
 | 🔍 **Web Search** | `modules/web_search.py` | DuckDuckGo (free) or Tavily API |
-| 🎨 **Image Generation** | `modules/image_gen.py` | DALL-E 3 (cloud) or Stable Diffusion (local) |
-| 🧠 **LLM Brain** | `core/llm_brain.py` | GPT-4o or local Llama 3 via Ollama, rolling memory |
+| 🎨 **Image Generation** | `modules/image_gen.py` | Pollinations.ai (free cloud) or Stable Diffusion (local) |
+| 🧠 **LLM Brain** | `core/llm_brain.py` | Google Gemini 1.5 Flash or local Llama 3 via Ollama, rolling memory |
+| 🎙️ **Voice Interface** | `app.py` & Web UI | Real-time speech-to-text and AI voice responses via Flask & SocketIO |
 | ⚙️ **Code Executor** | `core/executor.py` | Sandboxed Python runner with all FRIDAY tools |
 | 📋 **Task Planner** | `core/planner.py` | Decomposes goals → ordered steps, auto-retry on error |
 | 🛑 **Kill-Switch** | `core/safety.py` | Move mouse to top-left corner to stop instantly |
@@ -28,12 +29,16 @@ A fully modular, Windows-native AI agent that can control your computer, browse 
 ```
 Frieday/
 │
+├── app.py                      ← Web interface entry point (Flask)
 ├── friday.py                   ← Main entry point (REPL)
 ├── config.py                   ← All settings & API keys
 ├── setup.py                    ← One-time setup wizard
 ├── requirements.txt            ← pip dependencies
 ├── .env.example                ← API key template
 ├── .env                        ← Your actual keys (gitignored)
+│
+├── templates/                  ← Web UI HTML files
+├── static/                     ← Web UI CSS & JS files
 │
 ├── core/
 │   ├── logger.py               ← Centralised logging
@@ -62,7 +67,7 @@ Frieday/
 
 - **Python 3.10+** (3.11 recommended)
 - **Windows 10 / 11**
-- An **OpenAI API key** (for GPT-4o + DALL-E) *or* **Ollama** running locally
+- A **Google Gemini API key** (free tier) *or* **Ollama** running locally
 
 ### 2 — Setup
 
@@ -82,13 +87,16 @@ notepad .env
 ```
 
 ```ini
-OPENAI_API_KEY=sk-your-real-key-here
+GEMINI_API_KEY=your-gemini-api-key-here
 ```
 
 ### 4 — Run FRIDAY
 
 ```powershell
-# Standard mode
+# Launch the Voice-enabled Web Interface (Recommended)
+python app.py
+
+# Standard CLI mode
 python friday.py
 
 # Require confirmation before executing any generated code (safer)
@@ -153,10 +161,10 @@ KILL_SWITCH_ACTIVE_CORNER = "top_right"   # or bottom_left, bottom_right
 
 | Setting | Default | Description |
 |---|---|---|
-| `LLM_PROVIDER` | `"openai"` | `"openai"` or `"ollama"` |
-| `OPENAI_MODEL` | `"gpt-4o"` | Model name |
+| `LLM_PROVIDER` | `"gemini"` | `"gemini"` or `"ollama"` |
+| `GEMINI_MODEL` | `"gemini-1.5-flash"` | Model name |
 | `OLLAMA_MODEL` | `"llama3"` | Local model name |
-| `IMAGE_PROVIDER` | `"dalle"` | `"dalle"` or `"stable_diffusion"` |
+| `IMAGE_PROVIDER` | `"pollinations"` | `"pollinations"` or `"stable_diffusion"` |
 | `SEARCH_PROVIDER` | `"duckduckgo"` | `"duckduckgo"` or `"tavily"` |
 | `KILL_SWITCH_ACTIVE_CORNER` | `"top_left"` | Corner that triggers kill |
 | `PYAUTOGUI_PAUSE` | `0.3` | Seconds between automated actions |
@@ -211,10 +219,11 @@ IMAGE_PROVIDER = "stable_diffusion"
 | Layer | Library |
 |---|---|
 | Automation | PyAutoGUI, PyGetWindow |
-| Vision | Pillow, pytesseract, GPT-4o Vision |
-| LLM | OpenAI GPT-4o, Ollama (Llama 3) |
+| Vision | MSS, OpenCV, Pillow, pytesseract, Gemini Vision |
+| LLM | Google Gemini 1.5 Flash, Ollama (Llama 3) |
 | Search | duckduckgo-search, Tavily |
-| Image Gen | DALL-E 3, Stable Diffusion (diffusers) |
+| Image Gen | Pollinations.ai, Stable Diffusion (diffusers) |
+| Web UI | Flask, Flask-SocketIO, Web Speech API |
 | CLI | Rich |
 | HTTP | httpx |
 
